@@ -74,3 +74,10 @@ src/MDK/RTE/
 *.uvoptx
 
 src/MDK/demo.uvguix.Comment.Vivre
+
+etc/Example/Core
+etc/Example/Docs
+etc/Example/Drivers
+etc/Example/MDK-ARM
+
+
