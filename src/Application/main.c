@@ -28,7 +28,6 @@
 // 模拟IIC 会产生时许问题
 // 开启cache 注意配置MPU
 
-
 uint32_t Pen_Color  = 0xFF000000;
 uint32_t Back_Color = 0xFFFFFFFF;
 

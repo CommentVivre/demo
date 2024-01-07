@@ -64,3 +64,15 @@ MDK/DebugConfig/
 MDK/demo.uvguix.Unenfantseul
 
 MDK/EventRecorderStub.scvd
+
+src/MDK/DebugConfig/
+
+src/MDK/Objects/
+
+src/MDK/RTE/
+
+*.uvoptx
+
+*.uvprojx
+
+src/MDK/demo.uvguix.Comment.Vivre
