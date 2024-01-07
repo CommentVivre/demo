@@ -1,3 +1,10 @@
+﻿/**
+ * @copyright None
+ * @file      rcc.c
+ * @author    Comment Vivre 
+ * @date      2024-01-07
+ * @brief     None
+ */
 #include "main.h"
 /**
    @function     SystemClock_Config

@@ -180,6 +180,8 @@ void display_hex(uint16_t x, uint16_t y, FontSize size, uint32_t num);
 void NAND_Init(void);
 void Configure_Memory_Protection(void);
 
+
+void StartOperatingSystem(void);
 #endif
 
 

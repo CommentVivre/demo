@@ -28,12 +28,6 @@
 // 模拟IIC 会产生时许问题
 // 开启cache 注意配置MPU
 
-uint32_t Pen_Color  = 0xFF000000;
-uint32_t Back_Color = 0xFFFFFFFF;
-
-
-
-
 
 /**
    @function     main
@@ -48,12 +42,7 @@ int main(void)
   SCB_EnableICache();
   // 启用 Cortex-M 处理器的数据缓存
   SCB_EnableDCache();
-	
-	#if 0
-  // 在 Cortex-M 处理器的 Cache 控制寄存器中设置某个位
-  // 但未提供具体细节
-  SCB->CACR |= 1 << 2; 
-	#endif
+	// 配置MPU
 	Configure_Memory_Protection();
   // 初始化 HAL 库
   HAL_Init();
@@ -69,44 +58,8 @@ int main(void)
   MX_USART1_UART_Init();
   // 初始化 DMA（直接存储器访问）
   MX_DMA_Init();
-
-  
-  // 清零外部SDRAM
-  for (uint32_t t = 0; t < 1024 * 1024 * 16; t++)
-  { * (volatile uint32_t *)(0xC0000000 + t * 4) = 0x00000000; }
-  
-	#if 0
-  MX_LTDC_Init();
-  MX_DMA2D_Init();
-	#endif
-	
-	#if 1
-  #if 1
-  // lvgl 初始化
-  lv_init();
-  lv_port_disp_init();
-  // lv_demo_widgets();
-	lv_demo_benchmark();
-  #elif 0
-  Touch_Init();
-  ctp_test();
-  #else
-  LTDC_Fill_Area(0, 0, 599, 1023, White);
-  #endif
-	NAND_Init();
-  LTDC_Fill_Area(100, 0, 599, 1023, Silver);
-  while (1)
-  {
-    #if 1
-    lv_task_handler();
-    HAL_Delay(30);
-    LL_GPIO_TogglePin(GPIOB, LL_GPIO_PIN_1 | LL_GPIO_PIN_0);
-    #elif 1
-    HAL_Delay(500);
-    LL_GPIO_TogglePin(GPIOB, LL_GPIO_PIN_1 | LL_GPIO_PIN_0);
-    #endif
-  }
-  #endif
+	// 创建任务并开始调度
+	StartOperatingSystem();
   return 0;
 }
 
