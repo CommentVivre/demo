@@ -21,6 +21,8 @@
  5.移植FreeRTOS 并完成对lvgl的兼容
  6.使用GPU加速传输
   * 测试参考教程 https://blog.csdn.net/a2267542848/article/details/111163633
+ 7.NAND Flash 读写教程
+  * 参考例程 https://blog.csdn.net/qq_15181569/article/details/111312027
  ...
 */
 
