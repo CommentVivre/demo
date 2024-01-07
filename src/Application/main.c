@@ -30,6 +30,15 @@
 
 uint32_t Pen_Color  = 0xFF000000;
 uint32_t Back_Color = 0xFFFFFFFF;
+TaskHandle_t taskHandle;
+void task(void)
+{
+	while(1)
+	{
+		vTaskDelay(500);
+		LL_GPIO_TogglePin(GPIOB, LL_GPIO_PIN_1 | LL_GPIO_PIN_0);
+	}
+}
 
 /**
    @function     main
@@ -56,7 +65,7 @@ int main(void)
   // 配置系统时钟
   SystemClock_Config();
   // 配置外设共同的时钟参数
-  PeriphCommonClock_Config();
+  // PeriphCommonClock_Config();
   // 初始化 GPIO（通用输入输出端口）
   MX_GPIO_Init();
   // 初始化 FMC（外部存储控制器）
@@ -65,15 +74,28 @@ int main(void)
   MX_USART1_UART_Init();
   // 初始化 DMA（直接存储器访问）
   MX_DMA_Init();
-  #if 0
+
   
   // 清零外部SDRAM
   for (uint32_t t = 0; t < 1024 * 1024 * 16; t++)
   { * (volatile uint32_t *)(0xC0000000 + t * 4) = 0x00000000; }
   
-  #endif
+	#if 0
   MX_LTDC_Init();
   MX_DMA2D_Init();
+	#endif
+	xTaskCreate((TaskFunction_t)task,
+		(const char*)"task",
+		(uint16_t) 50,
+		(void*)NULL,
+			(UBaseType_t )0,
+		(TaskHandle_t *)&taskHandle);
+		vTaskStartScheduler();
+	while(1)
+	{
+		
+	}
+	#if 0
   #if 0
   // lvgl 初始化
   lv_init();
@@ -99,7 +121,7 @@ int main(void)
     LL_GPIO_TogglePin(GPIOB, LL_GPIO_PIN_1 | LL_GPIO_PIN_0);
     #endif
   }
-  
+  #endif
   return 0;
 }
 

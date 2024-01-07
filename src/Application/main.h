@@ -36,5 +36,9 @@
 #include "demos/widgets/lv_demo_widgets.h"
 #include "demos/benchmark/lv_demo_benchmark.h"
 
+#include "FreeRTOS.h"
+#include "task.h"
+#include "FreeRTOSConfig.h"
+
 
 #endif

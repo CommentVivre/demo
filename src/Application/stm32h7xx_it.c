@@ -1,6 +1,10 @@
 #include "main.h"
 #include "stm32h7xx_it.h"
 
+
+
+void xPortSysTickHandler( void );
+//BaseType_t xTaskGetSchedulerState( void );
 /******************************************************************************/
 /*           Cortex Processor Interruption and Exception Handlers          */
 /******************************************************************************/
@@ -53,28 +57,28 @@ void UsageFault_Handler(void)
   {
   }
 }
-
+#if (!defined(FREERTOS_CONFIG_H))
 /**
     @brief This function handles System service call via SWI instruction.
 */
 void SVC_Handler(void)
 {
 }
-
+#endif
 /**
     @brief This function handles Debug monitor.
 */
 void DebugMon_Handler(void)
 {
 }
-
+#if (!defined(FREERTOS_CONFIG_H))
 /**
     @brief This function handles Pendable request for system service.
 */
 void PendSV_Handler(void)
 {
 }
-
+#endif
 /**
     @brief This function handles System tick timer.
 */
@@ -82,6 +86,8 @@ void SysTick_Handler(void)
 {
   HAL_IncTick();
 	lv_tick_inc(1);
+	if(xTaskGetSchedulerState()!=taskSCHEDULER_NOT_STARTED)
+	{ xPortSysTickHandler();}
 }
 extern LTDC_HandleTypeDef hltdc;
 /**
