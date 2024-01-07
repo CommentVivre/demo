@@ -19,7 +19,7 @@ uint8_t Configure_MPU_Protection(uint32_t baseaddr, uint32_t size, uint32_t rnum
   MPU_Initure.Number = rnum;  // Set the protection region number
   MPU_Initure.BaseAddress = baseaddr;  // Set the base address
   MPU_Initure.Size = size;  // Set the protection area size
-  MPU_Initure.SubRegionDisable = 0X00;  // Disable sub-regions
+  MPU_Initure.SubRegionDisable = 0x00;  // Disable sub-regions
   MPU_Initure.TypeExtField = MPU_TEX_LEVEL0;  // Set the type extension field to level 0
   MPU_Initure.AccessPermission = (uint8_t)ap;  // Set the access permissions
   MPU_Initure.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;  // Allow instruction access (read instructions)

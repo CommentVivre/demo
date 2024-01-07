@@ -1,7 +1,8 @@
 #include "main.h"
 #include "stm32h7xx_it.h"
 
-
+#include "FreeRTOS.h"
+#include "task.h"
 
 void xPortSysTickHandler( void );
 //BaseType_t xTaskGetSchedulerState( void );
